@@ -149,7 +149,7 @@ if(l==0){
             overa.play();
             ctx.clearRect(320, 50, 680, 680);
             ctx.font = "30px Arial";
-            ctx.strokeText("Game Over", 10, 50);
+            ctx.strokeText(`Game Over\nPress SPace to restart`, 10, 50);
         console.log(snake[j].x ,j);
     }else{
         console.log(snake[j].x ,j);
@@ -233,11 +233,15 @@ if(l==0){
             l=3;
             }
         }
+         function keySpace (){
+         location.reload();
+        }
         let KEY_CODE = {
             LEFT: 37,
             UP: 38,
             RIGHT: 39,
-            DOWN: 40
+            DOWN: 40,
+            SPACE: 32,
          };
         
         window.addEventListener('keydown', function (event) {
@@ -254,6 +258,9 @@ if(l==0){
                case KEY_CODE.UP:
                 keyUp();
                   break;
+               case KEY_CODE.SPACE:
+                    keySpace();
+                    break;
                default:
                   break;
             }
