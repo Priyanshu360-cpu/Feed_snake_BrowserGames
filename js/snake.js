@@ -56,23 +56,7 @@ if(previous.x>=food.x-20&&previous.x<=food.x+20&& previous.y>=food.y-20&&previou
     let fooda=new Audio("./sound/food.mp3");
     fooda.play();
     points.innerHTML=parseInt(points.innerHTML)+1;
-    if(l==0){
-    let c={
-        "x":snake[snake.length-1].x-40,
-    "y":snake[snake.length-1].y,
-    "z":40,
-    "w":40}
-    
-    snake.push(c);
-    }else{
-        let c={
-            "x":snake[snake.length-1].x,
-        "y":snake[snake.length-1].y-40,
-        "z":40,
-        "w":40}
-        
-        snake.push(c);
-    }
+    snake.push(previous);
     ctx.clearRect(food.x, food.y,food.z,food.z);
     food.x=Math.floor(Math.random()*(1000-320))+320;
     food.y=Math.floor(Math.random()*(730-50))+50;
