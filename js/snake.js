@@ -30,7 +30,7 @@ function draw(){
                 previous.y=50;
                 ctx.strokeRect(320, 50, 680, 680);
             }
-if(previous.x==food.x && previous.y==food.y){
+if(previous.x>=food.x-20&&previous.x<=food.x+20&& previous.y>=food.y-20&&previous.y<=food.y+20){
     let points=document.getElementById("points");
     points.innerHTML=parseInt(points.innerHTML)+1;
     if(l==0){
@@ -57,11 +57,25 @@ if(l==0){
             
         },100)
         function keyDown (){
+            let x=previous.z;
+            previous.z=previous.w;
+            previous.w=x;
+            ctx.clearRect(320, 50, 680, 680) 
+            ctx.strokeRect(320, 50, 680, 680);      
+            ctx.fillStyle="yellow";
+            ctx.fillRect(food.x, food.y,food.z,food.z);
             console.log("down")
             l=1;
         }
         function keyRight(){
+            let x=previous.w;
+            previous.w=previous.z;
+            previous.z=x;
             console.log("right")
+            ctx.clearRect(320, 50, 680, 680) 
+            ctx.strokeRect(320, 50, 680, 680);
+            ctx.fillStyle="yellow";
+            ctx.fillRect(food.x, food.y,food.z,food.z);
             l=0;
         }
         let KEY_CODE = {
