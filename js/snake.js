@@ -8,7 +8,7 @@ function draw(){
         ctx.fillRect(680, 90, 40, 40);
         ctx.fillStyle="yellow";
         ctx.fillRect(920, 90, 20, 20);
-        let l=0;
+        var l=0;
         let previous = {
            "x": 680,
            "y": 90,
@@ -33,9 +33,10 @@ function draw(){
 if(previous.x==food.x && previous.y==food.y){
     let points=document.getElementById("points");
     points.innerHTML=parseInt(points.innerHTML)+1;
-    if(l=0){
+    if(l==0){
     previous.z=previous.z+40;
     }else{
+        console.log("l=1");
         previous.w=previous.w+40;
     }
     ctx.clearRect(food.x, food.y,food.z,food.z);
@@ -44,7 +45,7 @@ if(previous.x==food.x && previous.y==food.y){
     ctx.fillStyle="yellow";
     ctx.fillRect(food.x, food.y,food.z,food.z);
 }
-if(l=0){
+if(l==0){
             previous.x=previous.x+10;
 }else{
     previous.y=previous.y+10;
@@ -55,15 +56,42 @@ if(l=0){
             ctx.fillRect(previous.x, previous.y, previous.z,previous.w);
             
         },100)
-        keyDown = ()=>{
+        function keyDown (){
             console.log("down")
+            l=1;
         }
-        keyRight = ()=>{
+        function keyRight(){
             console.log("right")
+            l=0;
         }
-        window.addEventListener('keydown', keyDown);
-        window.addEventListener('keyright', keyRight);
-     l=1;
+        let KEY_CODE = {
+            LEFT: 37,
+            UP: 38,
+            RIGHT: 39,
+            DOWN: 40
+         };
+        
+        window.addEventListener('keydown', function (event) {
+            switch (event.keyCode) {
+               case KEY_CODE.LEFT:
+                  console.log('Left');
+                  break;
+               case KEY_CODE.RIGHT:
+                  console.log('Right');
+                  keyRight()
+                  break;
+               case KEY_CODE.DOWN:
+                  console.log('Down');
+                  keyDown()
+                  break;
+               case KEY_CODE.UP:
+                  console.log('Up');
+                  break;
+               default:
+                  break;
+            }
+         });
+     
         
     }
 }
