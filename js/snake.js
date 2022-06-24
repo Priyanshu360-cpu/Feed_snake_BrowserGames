@@ -47,8 +47,12 @@ if(previous.x>=food.x-20&&previous.x<=food.x+20&& previous.y>=food.y-20&&previou
 }
 if(l==0){
             previous.x=previous.x+10;
-}else{
+}else if(l==1){
     previous.y=previous.y+10;
+}else if(l==2){
+    previous.y=previous.y-10;
+}else {
+    previous.x=previous.x-10;
 }
             console.log(previous.x)
             
@@ -78,6 +82,29 @@ if(l==0){
             ctx.fillRect(food.x, food.y,food.z,food.z);
             l=0;
         }
+        function keyUp(){
+            let x=previous.z;
+            previous.z=previous.w;
+            previous.w=x;
+            ctx.clearRect(320, 50, 680, 680) 
+            ctx.strokeRect(320, 50, 680, 680);      
+            ctx.fillStyle="yellow";
+            ctx.fillRect(food.x, food.y,food.z,food.z);
+            console.log("up")
+            l=2;
+        }
+        function keyleft(){
+            let x=previous.w;
+            previous.w=previous.z;
+            previous.z=x;
+            console.log("right")
+            ctx.clearRect(320, 50, 680, 680) 
+            ctx.strokeRect(320, 50, 680, 680);
+            ctx.fillStyle="yellow";
+            ctx.fillRect(food.x, food.y,food.z,food.z);
+            console.log("up")
+            l=3;
+        }
         let KEY_CODE = {
             LEFT: 37,
             UP: 38,
@@ -88,6 +115,7 @@ if(l==0){
         window.addEventListener('keydown', function (event) {
             switch (event.keyCode) {
                case KEY_CODE.LEFT:
+                keyleft();
                   console.log('Left');
                   break;
                case KEY_CODE.RIGHT:
@@ -99,6 +127,7 @@ if(l==0){
                   keyDown()
                   break;
                case KEY_CODE.UP:
+                keyUp();
                   console.log('Up');
                   break;
                default:
