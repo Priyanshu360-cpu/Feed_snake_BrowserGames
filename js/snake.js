@@ -142,6 +142,7 @@ if(l==0){
         ctx.fillStyle="green";
         ctx.clearRect(x.x, x.y, 40,40);
     })
+   
     for(let j=0;j<snake.length;j++){
         if(snake[j].x<=320){  over=1;
             let overa=new Audio("./sound/gameover.mp3");
@@ -161,8 +162,8 @@ if(l==0){
                 
             })
 }
-            ctx.fillStyle="green";
-            ctx.fillRect(previous.x, previous.y, previous.z,previous.w);
+            
+            
             
         }},100)
         function keyDown (){
@@ -219,13 +220,16 @@ if(l==0){
             if(l!=0&&l!=3){
                 let o=1;
                 s=1
+                for(let h=0;h<snake.length;h++){
+                    snake[h].x=snake[h].x-40;
+                }
                 let t=0;
                 setInterval(()=>{
                     if(t<snake.length-1){
                         snake[t].x=snake[t].x-40;
     t=t+1;
                     }},100)
-            console.log("right")
+            console.log("left")
             ctx.clearRect(320, 50, 680, 680) 
             ctx.strokeRect(320, 50, 680, 680);
             ctx.fillStyle="yellow";
@@ -242,6 +246,10 @@ if(l==0){
             RIGHT: 39,
             DOWN: 40,
             SPACE: 32,
+            W: 87,
+            A: 65,
+            D: 68,
+            S: 83
          };
         
         window.addEventListener('keydown', function (event) {
@@ -260,6 +268,18 @@ if(l==0){
                   break;
                case KEY_CODE.SPACE:
                     keySpace();
+                    break;
+                case KEY_CODE.W:
+                    keyUp();
+                    break;
+                case KEY_CODE.A:
+                    keyleft();
+                    break;
+                case KEY_CODE.D:
+                    keyRight();
+                    break;
+                case KEY_CODE.S:
+                    keyDown();
                     break;
                default:
                   break;
