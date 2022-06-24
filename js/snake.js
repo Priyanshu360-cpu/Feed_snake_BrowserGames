@@ -9,18 +9,28 @@ function draw(){
         ctx.fillStyle="yellow";
         ctx.fillRect(920, 90, 20, 20);
         var l=0;
+        let snake=[];
+        var over=0;
         let previous = {
            "x": 680,
            "y": 90,
            "z":40,
-              "w":40
+           "w":40
         }
+        snake.push(previous);
         let food={
             "x": 920,
             "y": 90,
             "z":20,
         }
-        setInterval(()=>{
+        let u=0;
+        let r=0;
+        let p=0;
+        let d=0;
+
+        let s=1;
+        setInterval(()=>{if(over==0){
+            
             ctx.clearRect(previous.x, previous.y,previous.z,previous.w);
             if(previous.x>=(680+320)){
                 previous.x=320;
@@ -47,10 +57,21 @@ if(previous.x>=food.x-20&&previous.x<=food.x+20&& previous.y>=food.y-20&&previou
     fooda.play();
     points.innerHTML=parseInt(points.innerHTML)+1;
     if(l==0){
-    previous.z=previous.z+40;
+    let c={
+        "x":snake[snake.length-1].x-40,
+    "y":snake[snake.length-1].y,
+    "z":40,
+    "w":40}
+    
+    snake.push(c);
     }else{
-        console.log("l=1");
-        previous.w=previous.w+40;
+        let c={
+            "x":snake[snake.length-1].x,
+        "y":snake[snake.length-1].y-40,
+        "z":40,
+        "w":40}
+        
+        snake.push(c);
     }
     ctx.clearRect(food.x, food.y,food.z,food.z);
     food.x=Math.floor(Math.random()*(1000-320))+320;
@@ -58,26 +79,118 @@ if(previous.x>=food.x-20&&previous.x<=food.x+20&& previous.y>=food.y-20&&previou
     ctx.fillStyle="yellow";
     ctx.fillRect(food.x, food.y,food.z,food.z);
 }
+
 if(l==0){
-            previous.x=previous.x+10;
+    snake.map(x=>{
+        ctx.fillStyle="green";
+        ctx.clearRect(x.x, x.y, 40,40);
+    })
+    for(let j=0;j<snake.length;j++){
+        if(snake[j].x>=1000){
+            over=1;
+            let overa=new Audio("./sound/gameover.mp3");
+            overa.play();
+            overa.play();
+            ctx.clearRect(320, 50, 680, 680);
+            ctx.font = "30px Arial";
+            ctx.strokeText("Game Over", 10, 50);
+        }else{
+        console.log(snake[j].x ,j);
+    snake[j].x=snake[j].x+10;
+        }}
+            snake.map(x=>{
+                ctx.fillStyle="green";
+                ctx.fillRect(x.x, x.y, 40,40);
+                
+            }
+            )
+    
 }else if(l==1){
-    previous.y=previous.y+10;
+    snake.map(x=>{
+        ctx.fillStyle="green";
+        ctx.clearRect(x.x, x.y, 40,40);
+    })
+    for(let j=0;j<snake.length;j++){
+        
+        if(snake[j].y>730){
+            over=1;
+            let overa=new Audio("./sound/gameover.mp3");
+            overa.play();
+            overa.play();
+            ctx.clearRect(320, 50, 680, 680);
+            ctx.font = "30px Arial";
+            ctx.strokeText("Game Over", 10, 50);
+        console.log(snake[j].y ,j);
+    }else{
+        snake[j].y=snake[j].y+10;
+    }}
+            snake.map(x=>{
+                ctx.fillStyle="green";
+                ctx.fillRect(x.x, x.y, 40,40);
+                
+            })
 }else if(l==2){
-    previous.y=previous.y-10;
+    snake.map(x=>{
+        ctx.fillStyle="green";
+        ctx.clearRect(x.x, x.y, 40,40);
+    })
+    for(let j=0;j<snake.length;j++){
+        if(snake[j].y<90){
+
+            over=1;
+            let overa=new Audio("./sound/gameover.mp3");
+            overa.play();
+            overa.play();
+            ctx.clearRect(320, 50, 680, 680);
+            ctx.font = "30px Arial";
+            ctx.strokeText("Game Over", 10, 50);
+        console.log(snake[j].y ,j);
+    }else{
+        snake[j].y=snake[j].y-10;
+    }}
+            snake.map(x=>{
+                ctx.fillStyle="green";
+                ctx.fillRect(x.x, x.y, 40,40);
+                
+            })
 }else {
-    previous.x=previous.x-10;
+    snake.map(x=>{
+        ctx.fillStyle="green";
+        ctx.clearRect(x.x, x.y, 40,40);
+    })
+    for(let j=0;j<snake.length;j++){
+        if(snake[j].x<320){  over=1;
+            let overa=new Audio("./sound/gameover.mp3");
+            overa.play();
+            overa.play();
+            ctx.clearRect(320, 50, 680, 680);
+            ctx.font = "30px Arial";
+            ctx.strokeText("Game Over", 10, 50);
+        console.log(snake[j].x ,j);
+    }else{
+        console.log(snake[j].x ,j);
+    snake[j].x=snake[j].x-10;
+        }}
+            snake.map(x=>{
+                ctx.fillStyle="green";
+                ctx.fillRect(x.x, x.y, 40,40);
+                
+            })
 }
-            
-            
             ctx.fillStyle="green";
             ctx.fillRect(previous.x, previous.y, previous.z,previous.w);
             
-        },100)
+        }},100)
         function keyDown (){
             if(l!=2&&l!=1){
-            let x=previous.z;
-            previous.z=previous.w;
-            previous.w=x;
+                s=1
+               
+                let t=0;
+                setInterval(()=>{
+                    if(t<snake.length-1){
+                        snake[t].y=snake[t].y+40;
+    t=t+1;
+                    }},100)
             ctx.clearRect(320, 50, 680, 680) 
             ctx.strokeRect(320, 50, 680, 680);      
             ctx.fillStyle="yellow";
@@ -87,9 +200,13 @@ if(l==0){
         }
         function keyRight(){
             if(l!=3&&l!=0){
-            let x=previous.w;
-            previous.w=previous.z;
-            previous.z=x;
+                s=1
+                let t=0;
+                setInterval(()=>{
+                    if(t<snake.length-1){
+                        snake[t].x=snake[t].x+40;
+    t=t+1;
+                    }},100)
             console.log("right")
             ctx.clearRect(320, 50, 680, 680) 
             ctx.strokeRect(320, 50, 680, 680);
@@ -100,9 +217,13 @@ if(l==0){
         }
         function keyUp(){
             if(l!=1&&l!=2){
-            let x=previous.z;
-            previous.z=previous.w;
-            previous.w=x;
+                s=1
+                let t=0;
+                setInterval(()=>{
+                    if(t<snake.length-1){
+                        snake[t].y=snake[t].y-40;
+    t=t+1;
+                    }},100)
             ctx.clearRect(320, 50, 680, 680) 
             ctx.strokeRect(320, 50, 680, 680);      
             ctx.fillStyle="yellow";
@@ -113,9 +234,13 @@ if(l==0){
         function keyleft(){
             if(l!=0&&l!=3){
                 let o=1;
-            let x=previous.w;
-            previous.w=previous.z;
-            previous.z=x;
+                s=1
+                let t=0;
+                setInterval(()=>{
+                    if(t<snake.length-1){
+                        snake[t].x=snake[t].x-40;
+    t=t+1;
+                    }},100)
             console.log("right")
             ctx.clearRect(320, 50, 680, 680) 
             ctx.strokeRect(320, 50, 680, 680);
