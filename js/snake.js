@@ -43,6 +43,8 @@ function draw(){
             }
 if(previous.x>=food.x-20&&previous.x<=food.x+20&& previous.y>=food.y-20&&previous.y<=food.y+20){
     let points=document.getElementById("points");
+    let fooda=new Audio("./sound/food.mp3");
+    fooda.play();
     points.innerHTML=parseInt(points.innerHTML)+1;
     if(l==0){
     previous.z=previous.z+40;
@@ -65,7 +67,7 @@ if(l==0){
 }else {
     previous.x=previous.x-10;
 }
-            console.log(previous.x)
+            
             
             ctx.fillStyle="green";
             ctx.fillRect(previous.x, previous.y, previous.z,previous.w);
@@ -80,7 +82,6 @@ if(l==0){
             ctx.strokeRect(320, 50, 680, 680);      
             ctx.fillStyle="yellow";
             ctx.fillRect(food.x, food.y,food.z,food.z);
-            console.log("down")
             l=1;
             }
         }
@@ -106,7 +107,6 @@ if(l==0){
             ctx.strokeRect(320, 50, 680, 680);      
             ctx.fillStyle="yellow";
             ctx.fillRect(food.x, food.y,food.z,food.z);
-            console.log("up")
             l=2;
             }
         }
@@ -121,7 +121,6 @@ if(l==0){
             ctx.strokeRect(320, 50, 680, 680);
             ctx.fillStyle="yellow";
             ctx.fillRect(food.x, food.y,food.z,food.z);
-            console.log("up")
             l=3;
             }
         }
@@ -136,19 +135,15 @@ if(l==0){
             switch (event.keyCode) {
                case KEY_CODE.LEFT:
                 keyleft();
-                  console.log('Left');
                   break;
                case KEY_CODE.RIGHT:
-                  console.log('Right');
-                  keyRight()
+                  keyRight();
                   break;
                case KEY_CODE.DOWN:
-                  console.log('Down');
                   keyDown()
                   break;
                case KEY_CODE.UP:
                 keyUp();
-                  console.log('Up');
                   break;
                default:
                   break;
