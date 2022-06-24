@@ -77,7 +77,7 @@ if(l==0){
             overa.play();
             ctx.clearRect(320, 50, 680, 680);
             ctx.font = "30px Arial";
-            ctx.strokeText("Game Over", 10, 50);
+            ctx.strokeText(`Game Over\nPoints-${points.innerHTML}\n Space to REstart`, 10, 50);
         }else{
         console.log(snake[j].x ,j);
     snake[j].x=snake[j].x+10;
@@ -96,14 +96,14 @@ if(l==0){
     })
     for(let j=0;j<snake.length;j++){
         
-        if(snake[j].y>730){
+        if(snake[j].y>=730){
             over=1;
             let overa=new Audio("./sound/gameover.mp3");
             overa.play();
             overa.play();
             ctx.clearRect(320, 50, 680, 680);
             ctx.font = "30px Arial";
-            ctx.strokeText("Game Over", 10, 50);
+            ctx.strokeText(`Game Over\nPoints-${points.innerHTML}\n Space to REstart`, 10, 50);
         console.log(snake[j].y ,j);
     }else{
         snake[j].y=snake[j].y+10;
@@ -127,7 +127,7 @@ if(l==0){
             overa.play();
             ctx.clearRect(320, 50, 680, 680);
             ctx.font = "30px Arial";
-            ctx.strokeText("Game Over", 10, 50);
+            ctx.strokeText(`Game Over\nPoints-${points.innerHTML}\n Space to REstart`, 10, 50);
         console.log(snake[j].y ,j);
     }else{
         snake[j].y=snake[j].y-10;
@@ -143,13 +143,13 @@ if(l==0){
         ctx.clearRect(x.x, x.y, 40,40);
     })
     for(let j=0;j<snake.length;j++){
-        if(snake[j].x<320){  over=1;
+        if(snake[j].x<=320){  over=1;
             let overa=new Audio("./sound/gameover.mp3");
             overa.play();
             overa.play();
             ctx.clearRect(320, 50, 680, 680);
             ctx.font = "30px Arial";
-            ctx.strokeText(`Game Over\nPress SPace to restart`, 10, 50);
+            ctx.strokeText(`Game Over\nPoints-${points.innerHTML}\n Space to REstart`, 10, 50);
         console.log(snake[j].x ,j);
     }else{
         console.log(snake[j].x ,j);
