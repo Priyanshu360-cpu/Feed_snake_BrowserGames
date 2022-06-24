@@ -26,9 +26,18 @@ function draw(){
                 previous.x=320;
                 ctx.clearRect(680, 680, 680, 680)
                 ctx.strokeRect(320, 50, 680, 680);
+            }if(previous.x<320){
+                previous.x=1000;
+                ctx.clearRect(680, 680, 680, 680)
+                ctx.strokeRect(320, 50, 680, 680);
             }
             if(previous.y>=(680+50)){
                 previous.y=50;
+                ctx.clearRect(680, 680, 680, 680)
+                ctx.strokeRect(320, 50, 680, 680);
+            }
+            if(previous.y<50){
+                previous.y=730;
                 ctx.clearRect(680, 680, 680, 680)
                 ctx.strokeRect(320, 50, 680, 680);
             }
@@ -103,6 +112,7 @@ if(l==0){
         }
         function keyleft(){
             if(l!=0&&l!=3){
+                let o=1;
             let x=previous.w;
             previous.w=previous.z;
             previous.z=x;
