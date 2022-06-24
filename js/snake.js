@@ -24,10 +24,12 @@ function draw(){
             ctx.clearRect(previous.x, previous.y,previous.z,previous.w);
             if(previous.x>=(680+320)){
                 previous.x=320;
+                ctx.clearRect(680, 680, 680, 680)
                 ctx.strokeRect(320, 50, 680, 680);
             }
             if(previous.y>=(680+50)){
                 previous.y=50;
+                ctx.clearRect(680, 680, 680, 680)
                 ctx.strokeRect(320, 50, 680, 680);
             }
 if(previous.x>=food.x-20&&previous.x<=food.x+20&& previous.y>=food.y-20&&previous.y<=food.y+20){
@@ -61,6 +63,7 @@ if(l==0){
             
         },100)
         function keyDown (){
+            if(l!=2&&l!=1){
             let x=previous.z;
             previous.z=previous.w;
             previous.w=x;
@@ -70,8 +73,10 @@ if(l==0){
             ctx.fillRect(food.x, food.y,food.z,food.z);
             console.log("down")
             l=1;
+            }
         }
         function keyRight(){
+            if(l!=3&&l!=0){
             let x=previous.w;
             previous.w=previous.z;
             previous.z=x;
@@ -81,8 +86,10 @@ if(l==0){
             ctx.fillStyle="yellow";
             ctx.fillRect(food.x, food.y,food.z,food.z);
             l=0;
+            }
         }
         function keyUp(){
+            if(l!=1&&l!=2){
             let x=previous.z;
             previous.z=previous.w;
             previous.w=x;
@@ -92,8 +99,10 @@ if(l==0){
             ctx.fillRect(food.x, food.y,food.z,food.z);
             console.log("up")
             l=2;
+            }
         }
         function keyleft(){
+            if(l!=0&&l!=3){
             let x=previous.w;
             previous.w=previous.z;
             previous.z=x;
@@ -104,6 +113,7 @@ if(l==0){
             ctx.fillRect(food.x, food.y,food.z,food.z);
             console.log("up")
             l=3;
+            }
         }
         let KEY_CODE = {
             LEFT: 37,
